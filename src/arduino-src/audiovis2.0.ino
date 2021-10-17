@@ -43,8 +43,8 @@ void loop() {
 
     if(level>display_level+10){hue+=50;}
 
-    if(level >= display_level+1){display_level = level;}
-    if(level < display_level-1){display_level -= 1;}
+    if(level >= display_level){display_level = level;}
+    if(level < display_level){display_level -= 1;}
 
     for (int i = 0; i <= NUM_LEDS; i++) {
         leds[i] = CHSV(0,0,0);
