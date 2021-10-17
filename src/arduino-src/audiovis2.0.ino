@@ -14,19 +14,19 @@ uint8_t hue = 0;
 
 void setup() {
   Serial.begin(9600);
-  Serial.setTimeout(1);   
+  Serial.setTimeout(1);
   FastLED.setBrightness(255);
   FastLED.addLeds<WS2812, LED_PIN, GRB>(leds, NUM_LEDS);
 }
 
 void loop() {
-  
+
   if(Serial.available() > 0)
-  { 
+  {
     level = Serial.readStringUntil('\n').toInt()+0;
   }
 
-  if (level >= 60){level=60;} // level cap 
+  if (level >= NUM_LEDS){level=NUM_LEDS;} // level cap 
 
 
     Serial.print (level);
@@ -41,15 +41,15 @@ void loop() {
     hue-=1;
     }
 
-    if(level>display_level+20){hue+=20;}
+    if(level>display_level+10){hue+=50;}
 
-    if(level >= display_level){display_level = level;}
-    if(level < display_level){display_level -= 1;}
-    
+    if(level >= display_level+1){display_level = level;}
+    if(level < display_level-1){display_level -= 1;}
+
     for (int i = 0; i <= NUM_LEDS; i++) {
         leds[i] = CHSV(0,0,0);
-        
-        
+
+
         if(i < display_level){
           leds[i] = leds_rainbow[i];
         }
@@ -59,3 +59,4 @@ void loop() {
     level = 0;
     FastLED.show();
 }
+
