@@ -10,9 +10,7 @@ https://pypi.org/simple/pyserial/ (pick py2.7)
 code I stole that carries this whole project:
 https://menno.io/posts/pulseaudio_monitoring/
 
-src/arduino-src is the arduinop project you need to upload to your arduino
-
-
+src/arduino-src is the arduino project you need to upload to your arduino
 
 Getting: "OSError: [Errno 13] Permission denied: '/dev/ttyACM0'" error?
 
