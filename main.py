@@ -9,7 +9,8 @@ serialPort = serial.Serial(port="/dev/ttyACM0", baudrate=9600, bytesize=8, timeo
 async def listen(pulse: pulsectl_asyncio.PulseAsync, source_name: str):
     async for level in pulse.subscribe_peak_sample(source_name, rate=40):
         print('\x1b[2K\x1b[0E', end='')  # return to beginning of line
-        num_o = round(level * 50)
+        num_o = round(level * 100)
+        if num_o > 50: num_o == 50
         print('O' * num_o + '-' * (50-num_o), end='', flush=True)
         serialPort.write((str(num_o)+'\n').encode())
         serialPort.flushInput()
